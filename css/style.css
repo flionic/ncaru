@@ -1,20 +1,20 @@
 @font-face {
     font-family:'Plumb-Regular';
     src:url('../fonts/Plumb-Regular.eot?#iefix') format('embedded-opentype'),
-        url('../fonts/Plumb-Regular.woff') format('woff'),
-        url('../fonts/Plumb-Regular.woff2') format('woff2');
+    url('../fonts/Plumb-Regular.woff') format('woff'),
+    url('../fonts/Plumb-Regular.woff2') format('woff2');
 }
 @font-face {
     font-family:'Plumb-Light';
     src:url('../fonts/Plumb-Light.eot?#iefix') format('embedded-opentype'),
-        url('../fonts/Plumb-Light.woff') format('woff'),
-        url('../fonts/Plumb-Light.woff2') format('woff2');
+    url('../fonts/Plumb-Light.woff') format('woff'),
+    url('../fonts/Plumb-Light.woff2') format('woff2');
 }
 @font-face {
     font-family:'Plumb-Medium';
     src:url('../fonts/Plumb-Medium.eot?#iefix') format('embedded-opentype'),
-        url('../fonts/Plumb-Medium.woff') format('woff'),
-        url('../fonts/Plumb-Medium.woff2') format('woff2');
+    url('../fonts/Plumb-Medium.woff') format('woff'),
+    url('../fonts/Plumb-Medium.woff2') format('woff2');
 }
 body {
     color: #fefeff;
