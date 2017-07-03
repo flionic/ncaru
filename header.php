@@ -13,7 +13,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title><?php bloginfo( 'name' ); ?><?php wp_title(); ?></title>
+    <title><?php wp_title( '-', true, 'right' ); ?><?php bloginfo( 'name' ); ?></title>
     <link rel="profile" href="http://gmpg.org/xfn/11"/>
     <link rel="pingback" href="<?php bloginfo('pingback_url'); ?>"/>
     <link rel="stylesheet" href="<?php echo esc_url(get_template_directory_uri()); ?>/css/bootstrap.min.css">
@@ -41,38 +41,18 @@
                 </button>
             </div>
         </div>
-        <!--<a class="navbar-brand" href="#">NCA Live!</a>-->
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item active"><a class="nav-link" href="<?php echo esc_url(home_url('/')); ?>">Главная <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-nav" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-                       aria-expanded="false">О компании</a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                        <a class="dropdown-item" href="#">Separated link</a>
-                        <a class="dropdown-item" href="#">Separated link</a>
-                    </div>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="#">Новости</a></li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-nav" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-                       aria-expanded="false">Концерты</a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">NCA и благотворительность</a>
-                        <a class="dropdown-item" href="#">Магазин фанатской атрибутики</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                        <a class="dropdown-item" href="#">Separated link</a>
-                        <a class="dropdown-item" href="#">Separated link</a>
-                    </div>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="#">Контакты</a></li>
-            </ul>
-        </div>
+<!--        <a class="navbar-brand" href="#">NCA Live!</a>-->
+        <?php wp_nav_menu(array(
+            'menu'              => 'primary',
+            'theme_location'    => 'primary',
+            'depth'             => 2,
+            'container'         => 'div',
+            'container_id'      => 'navbarNav',
+            'container_class'   => 'navbar-collapse collapse',
+            'menu_id'           => 'primary-nav',
+            'menu_class'        => 'navbar-nav',
+            'fallback_cb'       => 'WP_Bootstrap_Navwalker::fallback',
+            'walker'            => new wp_bootstrap_navwalker()
+        ));?>
     </nav>
 </div>

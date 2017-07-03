@@ -1,6 +1,18 @@
 <?php
-add_theme_support( 'post-thumbnails' );
+require_once('bs-navwalker.php');
+add_action( 'after_setup_theme', 'theme_register_nav_menu' );
+function theme_register_nav_menu() {
+    register_nav_menu( 'primary', 'Навигационное меню' );
+}
+if (function_exists('add_theme_support')) {
+    add_theme_support( 'post-thumbnails' );
+    add_theme_support('menus');
+}
 remove_filter( 'the_content', 'wpautop' );
+
+//register_nav_menus( array(
+//    'nav_menu' => 'Навигационная панель2'
+//) );
 
 function the_img_url(){
     if ( has_post_thumbnail() ) {
