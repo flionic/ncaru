@@ -9,7 +9,6 @@ if (function_exists('add_theme_support')) {
     add_theme_support('menus');
 }
 remove_filter( 'the_content', 'wpautop' );
-
 //register_nav_menus( array(
 //    'nav_menu' => 'Навигационная панель2'
 //) );
