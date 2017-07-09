@@ -1,4 +1,21 @@
 <?php
+/* ---------- ADMIN ---------- */
+// add a new logo to the login page
+function custom_login_page() { ?>
+    <style type="text/css">
+        .login #login h1 a {
+            background-image: url( <?php echo get_template_directory_uri() . '/img/logo.png' ?> );
+        }
+    </style>
+<?php }
+wp_enqueue_style( 'nca-admin', get_template_directory_uri() . '/css/admin.min.css');
+add_action( 'login_enqueue_scripts', 'custom_login_page');
+
+// change link on logo
+add_filter('login_headerurl', create_function(false,"return home_url();"));
+// change title on logo
+add_filter('login_headertitle', create_function(false,"return 'На главную';"));
+
 /* ---------- ALL ---------- */
 // Maintenance Mode
 function wp_maintenance_mode(){

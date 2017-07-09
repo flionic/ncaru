@@ -1,0 +1,8 @@
+body {
+    background: #121028;
+}
+.login #login h1 a {
+    width: 240px;
+    height: 130px;
+    background-size: contain;
+}
