@@ -110,10 +110,6 @@ a, p, h1, h4  {
     color: #F2C115;
     border-top-color: #F2C115;
 }
-.nav-item.dropdown:hover > .dropdown-menu {
-    display: block;
-    margin: 5px 0 0;
-}
 .navbar-toggler-text {
     text-transform: uppercase;
     vertical-align: middle;
@@ -123,13 +119,23 @@ a, p, h1, h4  {
 }
 @media (min-width: 300px) and (max-width: 991px) {
     .navbar-nav {
-        display: block;
-        text-align: center;
+        /*display: block;*/
+        /*text-align: center;*/
     }
-    .nav-item {
-        display: inline-block;
+    .navbar-nav>.nav-item {
+        /*display: inline-block;*/
+        display: grid;
         padding-right: 25px;
         padding-bottom: 10px;
+    }
+}
+@media (max-width: 991px) {
+    .navbar-nav>.nav-item.dropdown>.nav-link {
+        /*pointer-events: none;*/
+    }
+    .navbar-toggleable-md .navbar-nav .dropdown-menu {
+        position: absolute;
+        float: left;
     }
 }
 /* dropdown navbar */
@@ -175,6 +181,9 @@ a, p, h1, h4  {
 }
 .carousel-item {
     height: 35vw;
+    background-size: cover;
+    background-repeat: no-repeat;
+    /*background: no-repeat center center;*/
 }
 .carousel-item .img-fluid {
     width: 100%;
@@ -398,6 +407,11 @@ a, p, h1, h4  {
         padding: 0;
         /*padding: 0 5px;*/
         width: 100%;
+    }
+    /* open menu on hover */
+    .nav-item.dropdown:hover > .dropdown-menu {
+        /*display: block;*/
+        /*margin: 5px 0 0;*/
     }
     .navbar-nav > .nav-item:not(:last-child) {
         border-right: 2px rgba(254, 254, 255, 0.2) solid;
