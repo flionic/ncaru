@@ -16,7 +16,90 @@ add_filter('login_headerurl', create_function(false,"return home_url();"));
 // change title on logo
 add_filter('login_headertitle', create_function(false,"return 'На главную';"));
 
-/* ---------- ALL ---------- */
+/* ------ SETTINGS PAGE ------ */
+
+// show settings section
+function theme_settings_page(){
+    ?>
+    <div class="wrap">
+        <h1>Пользовательские настройки</h1>
+        <form method="post" action="options.php">
+            <?php
+            settings_fields("section");
+            do_settings_sections("theme-options");
+            submit_button();
+            ?>
+        </form>
+    </div>
+    <?php
+}
+function add_theme_menu_item()
+{
+    add_menu_page("Настройки NCA", "Настройки NCA", "manage_options", "theme-panel", "theme_settings_page", null, 59);
+}
+add_action("admin_menu", "add_theme_menu_item");
+
+// elements of settings section
+function display_buyticket_element()
+{
+    ?>
+    <fieldset>
+        <legend class="screen-reader-text"><span>Кнопка билетов</span></legend>
+        <label for="buyticket_btn">
+            <input name="buyticket_btn" type="checkbox" id="buyticket_btn" value="1" <?php checked(1, get_option('buyticket_btn'), true); ?> />
+            Отображать ли кнопку покупки
+        </label>
+    </fieldset>
+    <?php
+}
+function display_footer_element()
+{
+    ?>
+    <input name="footer_text" type="text" id="footer_text" value="<?php echo get_option('footer_text'); ?>" class="regular-text">
+    <p class="description" id="copyright-description">Текст сообщения в подвале (самый низ сайта)</p>
+    <?php
+}
+function display_carousel_element()
+{
+    ?>
+    <input name="carousel_interval" type="text" id="carousel_interval" value="<?php echo get_option('carousel_interval'); ?>" class="regular-text">
+    <p class="description" id="carousel-time-description">Скорость переключения картинок (секунды)</p>
+    <?php
+}
+function display_devmode_element()
+{
+    ?>
+    <fieldset>
+        <legend class="screen-reader-text"><span>Тех. обслуживание</span></legend>
+        <label for="devmode_cb">
+            <input name="devmode_cb" type="checkbox" id="devmode_cb" value="1" <?php checked(1, get_option('devmode_cb'), true); ?> />
+            Закрыть сайт для посетителей
+        </label>
+    </fieldset>
+    <input name="devmode_text" type="text" id="devmode_text" value="<?php echo get_option('devmode_text'); ?>" class="regular-text">
+    <p class="description" id="devmode-description">Выводимое сообщение в режиме обслуживания</p>
+    <?php
+}
+
+// page of settings section
+function display_theme_panel_fields()
+{
+    add_settings_section("section", "Главные настройки", null, "theme-options");
+
+    add_settings_field("buyticket", "Купить билеты", "display_buyticket_element", "theme-options", "section");
+    add_settings_field("copyright", "Copyright", "display_footer_element", "theme-options", "section");
+    add_settings_field("carousel", "Настройки слайдера", "display_carousel_element", "theme-options", "section");
+    add_settings_field("devmode", "Режим тех. обслуживания", "display_devmode_element", "theme-options", "section");
+    
+    register_setting("section", "buyticket_btn");
+    register_setting("section", "footer_text");
+    register_setting("section", "carousel_interval");
+    register_setting("section", "devmode_cb");
+    register_setting("section", "devmode_text");
+}
+add_action("admin_init", "display_theme_panel_fields");
+
+/* ----------- ALL ----------- */
 // Maintenance Mode
 function wp_maintenance_mode(){
     if(!current_user_can('edit_themes') || !is_user_logged_in()){

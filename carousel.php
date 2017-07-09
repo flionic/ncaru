@@ -7,7 +7,7 @@
  */
 ?>
 <div class="container">
-    <div id="carouselControls" class="carousel slide" data-ride="carousel" data-interval="4000">
+    <div id="carouselControls" class="carousel slide" data-ride="carousel" data-interval="<?php echo get_option('carousel_interval')*1000; ?>">
         <div class="carousel-inner" role="listbox">
             <div class="carousel-item active" style="background-image: url(<?php echo esc_url(get_template_directory_uri()); ?>/img/pic-1.jpg);"></div>
             <div class="carousel-item" style="background-image: url(<?php echo esc_url(get_template_directory_uri()); ?>/img/pic-1.jpg);"></div>

@@ -25,9 +25,9 @@
 <div class="container">
     <a href="<?php echo esc_url(home_url('/')); ?>" title="<?php bloginfo('name'); ?> - Главная">
         <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/logo.png" class="img-fluid logo" alt="logo"></a>
-    <?php if (get_option('blog_public') == '0' && (!current_user_can('edit_themes') || !is_user_logged_in())) { ?>
+    <?php if (get_option('devmode_cb') == '1' && (!current_user_can('edit_themes') || !is_user_logged_in())) { ?>
         <h2 style="padding-top: 100px; text-align: center;">К сожалению, доступ временно ограничен</h2>
-        <h1 class="display-3" style="padding-bottom: 30px; text-align: center;">технические работы</h1>
+        <h1 class="display-3" style="padding-bottom: 30px; text-align: center;"><?php echo get_option('devmode_text'); ?></h1>
     <?php echo "</div>"; get_footer(); die(); } ?>
     <nav class="navbar navbar-toggleable-md navbar-inverse">
         <div class="d-flex nav-menu justify-content-md-center">

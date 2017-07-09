@@ -20,7 +20,7 @@
                             <p class="card-text"><?php the_content(); ?></p>
                         </div>
                     </div>
-                    <button type="button" class="btn btn-block btn-outline-primary">Купить билеты</button>
+                    <?php if (get_option('buyticket_btn') == '1') : echo '<button type="button" class="btn btn-block btn-outline-primary">Купить билеты</button>'; endif;?>
                 </div>
             <?php endwhile; endif; ?>
         </div>

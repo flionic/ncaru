@@ -17,7 +17,7 @@
                             <?php edit_post_link( __( 'Редактировать'), '', '<br>', 0, 'post-edit-link btn btn-primary btn-sm' ); ?>
                             <small class="text-muted"><?php the_time('d.m.y H:i'); ?>, <?php the_category( ', ' ); ?></small>
                         </blockquote>
-                        <a href="#" class="btn btn-warning">Купить билеты</a>
+                        <?php if (get_option('buyticket_btn') == '1') : echo '<a href="#" class="btn btn-warning">Купить билеты</a>'; endif;?>
                         <hr class="my-4">
                         <p class="post-text"><?php the_content(); ?></p>
                     </div>
