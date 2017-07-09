@@ -7,13 +7,16 @@
  */
 ?>
 <?php get_header(); ?>
-<?php get_template_part('carousel'); ?>
+<div class="container">
+    <?php echo cptbc_shortcode(); ?>
+</div>
+<?php // get_template_part('carousel'); ?>
     <div class="container">
         <div class="row cards">
             <?php if (have_posts()): while (have_posts()): the_post(); ?>
                 <div class="col-6 col-md-4">
                     <div class="card card-inverse-">
-                        <img class="card-img" src="<?php the_img_url(); ?>" alt="<?php the_title(); ?>">
+                        <?php the_post_thumb(); ?>
                         <div class="card-img-overlay">
                             <a class="card-link" title="<?php the_title_attribute(); ?>" href="<?php the_permalink(); ?>"></a>
                             <h4 class="card-title"><?php the_title(); ?></h4>

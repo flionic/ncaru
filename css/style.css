@@ -246,6 +246,13 @@ a, p, h1, h4  {
     -moz-user-select: none;
     -ms-user-select: none;
 }
+/* background image type */
+/*.card-img {*/
+    /*height: 100%;*/
+    /*background-size: cover;*/
+    /*background-repeat: no-repeat;*/
+    /*background-position: center center;*/
+/*}*/
 .card-img-overlay {
     padding: 0;
 }
