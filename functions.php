@@ -1,4 +1,12 @@
 <?php
+// Activate WordPress Maintenance Mode
+function wp_maintenance_mode(){
+    if(!current_user_can('edit_themes') || !is_user_logged_in()){
+        wp_die('<h1 style="color:#f2c115;">Техническое обслуживание.</h1><br />Пожалуйста, зайдите позже.');
+    }
+}
+//add_action('get_header', 'wp_maintenance_mode');
+
 require_once('bs-navwalker.php');
 add_action( 'after_setup_theme', 'theme_register_nav_menu' );
 function theme_register_nav_menu() {

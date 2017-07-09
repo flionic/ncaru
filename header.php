@@ -15,7 +15,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title><?php wp_title( '-', true, 'right' ); ?><?php bloginfo( 'name' ); ?></title>
     <link rel="profile" href="http://gmpg.org/xfn/11"/>
-    <link rel="pingback" href="<?php bloginfo('pingback_url'); ?>"/>
+    <?php if ( is_singular() && pings_open( get_queried_object() ) ) : ?>
+        <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
+    <?php endif; ?>
     <link rel="stylesheet" href="<?php echo esc_url(get_template_directory_uri()); ?>/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?php echo esc_url(get_template_directory_uri()); ?>/css/style.min.css">
     <link rel='stylesheet' id='main-style' href='<?php echo get_stylesheet_uri(); ?>' type='text/css' media='all' />
@@ -30,7 +32,12 @@
 </head>
 <body <?php body_class(); ?>>
 <div class="container">
-    <a href="<?php echo esc_url(home_url('/')); ?>" title="<?php bloginfo('name'); ?>"><img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/logo.png" class="img-fluid logo" alt="logo"></a>
+    <a href="<?php echo esc_url(home_url('/')); ?>" title="<?php bloginfo('name'); ?> - Главная">
+        <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/logo.png" class="img-fluid logo" alt="logo"></a>
+    <?php if (get_option('blog_public') =='0' && (!current_user_can('edit_themes') || !is_user_logged_in())) { ?>
+        <h2 style="padding-top: 100px; text-align: center;">К сожалению, доступ временно ограничен</h2>
+        <h1 class="display-3" style="padding-bottom: 30px; text-align: center;">технические работы</h1>
+    <?php echo "</div>"; get_footer(); die(); } ?>
     <nav class="navbar navbar-toggleable-md navbar-inverse">
         <div class="d-flex nav-menu justify-content-md-center">
             <div class="col-xs-4 w-100">
@@ -41,7 +48,6 @@
                 </button>
             </div>
         </div>
-<!--        <a class="navbar-brand" href="#">NCA Live!</a>-->
         <?php wp_nav_menu(array(
             'menu'              => 'primary',
             'theme_location'    => 'primary',

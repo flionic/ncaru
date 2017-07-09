@@ -18,7 +18,6 @@
                             <a class="card-link" title="<?php the_title_attribute(); ?>" href="<?php the_permalink(); ?>"></a>
                             <h4 class="card-title"><?php the_title(); ?></h4>
                             <p class="card-text"><?php the_content(); ?></p>
-                            <!--<p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>-->
                         </div>
                     </div>
                     <button type="button" class="btn btn-block btn-outline-primary">Купить билеты</button>
