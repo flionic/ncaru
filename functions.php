@@ -1,4 +1,5 @@
 <?php
+/* ---------- ALL ---------- */
 // Maintenance Mode
 function wp_maintenance_mode(){
     if(!current_user_can('edit_themes') || !is_user_logged_in()){
@@ -6,6 +7,20 @@ function wp_maintenance_mode(){
     }
 }
 //add_action('get_header', 'wp_maintenance_mode');
+
+// Enqueue CSS and JS
+function enqueue_css_js() {
+    // css
+    wp_enqueue_style( 'bs-4', get_template_directory_uri() . '/css/bootstrap.min.css');
+    wp_enqueue_style( 'my', get_template_directory_uri() . '/css/style.min.css');
+    wp_enqueue_style( 'nca', get_stylesheet_uri());
+    // js
+    wp_enqueue_script( 'jquery', get_template_directory_uri() . '/js/jquery.min.js', '', '', true);
+    wp_enqueue_script( 'tether', get_template_directory_uri() . '/js/tether.min.js', '', '', true);
+    wp_enqueue_script( 'bs-4', get_template_directory_uri() . '/js/bootstrap.min.js', '', '', true);
+    wp_enqueue_script( 'nca', get_template_directory_uri() . '/js/main.js', '', '', true);
+}
+add_action('wp_enqueue_scripts', 'enqueue_css_js');
 
 // navbar
 require_once('bs-navwalker.php');

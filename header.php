@@ -18,15 +18,6 @@
     <?php if ( is_singular() && pings_open( get_queried_object() ) ) : ?>
         <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
     <?php endif; ?>
-    <link rel="stylesheet" href="<?php echo esc_url(get_template_directory_uri()); ?>/css/bootstrap.min.css">
-    <link rel="stylesheet" href="<?php echo esc_url(get_template_directory_uri()); ?>/css/style.min.css">
-    <link rel='stylesheet' id='main-style' href='<?php echo get_stylesheet_uri(); ?>' type='text/css' media='all' />
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
     <?php if (is_singular() && get_option('thread_comments')) wp_enqueue_script('comment-reply'); ?>
     <?php wp_head(); ?>
 </head>
@@ -34,7 +25,7 @@
 <div class="container">
     <a href="<?php echo esc_url(home_url('/')); ?>" title="<?php bloginfo('name'); ?> - Главная">
         <img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/logo.png" class="img-fluid logo" alt="logo"></a>
-    <?php if (get_option('blog_public') =='0' && (!current_user_can('edit_themes') || !is_user_logged_in())) { ?>
+    <?php if (get_option('blog_public') == '0' && (!current_user_can('edit_themes') || !is_user_logged_in())) { ?>
         <h2 style="padding-top: 100px; text-align: center;">К сожалению, доступ временно ограничен</h2>
         <h1 class="display-3" style="padding-bottom: 30px; text-align: center;">технические работы</h1>
     <?php echo "</div>"; get_footer(); die(); } ?>
