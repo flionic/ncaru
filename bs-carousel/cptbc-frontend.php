@@ -67,10 +67,13 @@ function cptbc_frontend($atts){
             $image = get_the_post_thumbnail( get_the_ID(), $atts['image_size'] );
             $image_src = wp_get_attachment_image_src(get_post_thumbnail_id(), $atts['image_size']);
             $image_src = $image_src[0];
-            $url = get_post_meta(get_the_ID(), 'cptbc_image_url', true);
+            $pid = get_post_meta(get_the_ID(), 'cptbc_pid', true);
+            $url = $pid ? get_the_permalink($pid) : get_post_meta(get_the_ID(), 'cptbc_image_url', true);
+            $url_title = $pid ? get_the_title($pid) : get_the_title();
+            /* if ($url == '#CUSTOM#') {$url = get_post_meta(get_the_ID(), 'cptbc_image_curl', true);}   */
             $url_openblank = get_post_meta(get_the_ID(), 'cptbc_image_url_openblank', true);
             $link_text = get_post_meta(get_the_ID(), 'cptbc_image_link_text', true);
-            $images[] = array('post_id' => $post_id, 'title' => $title, 'content' => $content, 'image' => $image, 'img_src' => $image_src, 'url' => esc_url($url), 'url_openblank' => $url_openblank == "1" ? true : false, 'link_text' => $link_text);
+            $images[] = array('post_id' => $post_id, 'url_title' => $url_title, 'title' => $title, 'content' => $content, 'image' => $image, 'img_src' => $image_src, 'url' => esc_url($url), 'url_openblank' => $url_openblank == "1" ? true : false, 'link_text' => $link_text);
         }
     }
 
@@ -97,18 +100,18 @@ function cptbc_frontend($atts){
                     if( !isset($atts['link_button']) ) {
                         $atts['link_button'] = 0;
                     }
+                  // Build anchor link so it can be reused
+                  $linkstart = '';
+                  $linkend = '';
 
-                    // Build anchor link so it can be reused
-                    $linkstart = '';
-                    $linkend = '';
-                    if($image['url'] && $atts['link_button'] == 0) {
-                        $linkstart = '<a href="'.$image['url'].'"';
-                        if($image['url_openblank']) {
-                            $linkstart .= ' target="_blank"';
-                        }
-                        $linkstart .= '>';
-                        $linkend = '</a>';
-                    } ?>
+                  if($image['url'] && $atts['link_button'] == 0 && false) {    // DISABLED
+                      $linkstart = '<a href="'.$image['url'].'"';
+                      if($image['url_openblank']) {
+                          $linkstart .= ' target="_blank"';
+                      }
+                      $linkstart .= '>';
+                      $linkend = '</a>';
+                  } ?>
 
                     <div class="carousel-item <?php echo $key == 0 ? 'active' : ''; ?>" id="cptbc-item-<?php echo $image['post_id']; ?>" <?php if($atts['use_background_images'] == 1){ echo ' style="height: '.$atts['background_images_height'].'px; background: url(\''.$image['img_src'].'\') no-repeat center center ; -webkit-background-size: ' . $atts['select_background_images_style_size'] . '; -moz-background-size: ' . $atts['select_background_images_style_size'] . '; -o-background-size: ' . $atts['select_background_images_style_size'] . '; background-size: ' . $atts['select_background_images_style_size'] . ';"'; } ?>>
                         <?php
@@ -117,11 +120,11 @@ function cptbc_frontend($atts){
                             echo $linkstart.$image['image'].$linkend;
                             // Backgorund images mode - need block level link inside carousel link if we have a linl
                         } else if($image['url'] && $atts['link_button'] == 0) {
-                            echo '<a href="'.$image['url'].'"';
+                            echo '<a href="'.$image['url'].'" title="'.$image['url_title'].'"';
                             if($image['url_openblank']) {
-                                $linkstart .= ' target="_blank"';
+                                echo ' target="_blank"';
                             }
-                            echo ' style="display:block; width:100%; height:100%;">&nbsp;</a>';
+                            echo ' style="display:block; width:100%; height:100%; z-index:9999;">&nbsp;</a>';
                         }
                         // The Caption div
                         if(($atts['showcaption'] === 'true' && (strlen($image['title']) > 0 || strlen($image['content']) > 0)) || ($image['url'] && $atts['link_button'] == 1))  {

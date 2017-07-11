@@ -128,53 +128,44 @@ function theme_register_nav_menu()
 
 // Declaring theme settings
 if (function_exists('add_theme_support')) {
-    add_theme_support('post-thumbnails');
-    set_post_thumbnail_size(307, 410, array('center', 'center'));
     add_theme_support('menus');
+    add_theme_support('post-thumbnails');
+//    set_post_thumbnail_size(307, 410, array('center', 'center'));
+}
+if (function_exists('add_image_size')) {
+    add_image_size('card-thumb', 307, 410, array('center', 'center'));
 }
 
 // no-image on posts
 function the_post_thumb()
 {
-    if (has_post_thumbnail()) {
-        the_post_thumbnail('post-thumbnail', array(
-            'class' => 'card-img'
-        ));
-    } else {
-        echo '<img class="card-img" src="' . esc_url(get_template_directory_uri()) . '/img/no-image.png "/>';
-    }
+    if (has_post_thumbnail()) { the_post_thumbnail('card-thumb', array('class' => 'card-img')); }
+    else { echo '<img class="card-img" src="' . esc_url(get_template_directory_uri()) . '/img/no-image.png "/>'; }
 }
 function the_img_url()
 {
-    if (has_post_thumbnail()) {
-        echo wp_get_attachment_url(get_post_thumbnail_id());
-    } else {
-        echo esc_url(get_template_directory_uri()) . '/img/no-image.png';
-    }
+    if (has_post_thumbnail()) { echo wp_get_attachment_url(get_post_thumbnail_id()); }
+    else { echo esc_url(get_template_directory_uri()) . '/img/no-image.png'; }
 }
 
 // Disable original thumb sizes
-function wplift_remove_image_sizes($sizes) {
-    unset( $sizes['thumbnail']);
-    unset( $sizes['medium']);
-    unset( $sizes['large']);
-    return $sizes;
-}
-add_filter('intermediate_image_sizes_advanced', 'wplift_remove_image_sizes');
+//function wplift_remove_image_sizes($sizes) {
+//    unset( $sizes['thumbnail']);
+//    unset( $sizes['medium']);
+//    unset( $sizes['large']);
+//    return $sizes;
+//}
+//add_filter('intermediate_image_sizes_advanced', 'wplift_remove_image_sizes');
 
 // Content without html tags
-function content_filter()
-{
-    return wp_strip_all_tags(get_the_content());
-}
+function content_filter() { return wp_strip_all_tags(get_the_content()); }
 add_filter('the_content', 'content_filter');
 remove_filter('the_content', 'wpautop');
 
 // Post links bootstrap class fix
-function posts_link_attributes()
-{
-    return 'class="btn-a"';
-}
+function posts_link_attributes() { return 'class="btn-a"'; }
 add_filter('next_posts_link_attributes', 'posts_link_attributes');
 add_filter('previous_posts_link_attributes', 'posts_link_attributes');
+
+require_once('post-expirator/post-expirator.php');
 require_once('bs-carousel/cpt-bootstrap-carousel.php');

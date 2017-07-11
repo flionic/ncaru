@@ -8,7 +8,8 @@
 ?>
 <?php get_header(); ?>
 <div class="container">
-    <?php echo cptbc_shortcode(); ?>
+    <?php echo do_shortcode('[image-carousel]'); ?>
+    <?php //echo cptbc_shortcode(); ?>
 </div>
 <?php // get_template_part('carousel'); ?>
     <div class="container">
