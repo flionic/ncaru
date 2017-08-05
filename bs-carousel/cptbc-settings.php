@@ -27,8 +27,8 @@ function cptbc_set_options (){
 		'after_title' => '</h4>',
 		'before_caption' => '<p>',
 		'after_caption' => '</p>',
-		'image_size' => 'full',
-		'link_button' => '1',
+		'image_size' => 'large',
+		'link_button' => '0',
 		'link_button_text' => 'Подробнее',
 		'link_button_class' => 'btn btn-outline-warning',
 		'link_button_before' => '',
@@ -38,7 +38,7 @@ function cptbc_set_options (){
 		'use_background_images' => '1',
 		'background_images_height' => '380',
         'background_images_style_size' => 'cover',
-        'use_javascript_animation' => '1',
+        'use_javascript_animation' => '1'
 	);
 	add_option('cptbc_settings', $defaults);
 }
@@ -112,12 +112,12 @@ class cptbc_settings_page {
 				array( $this, 'cptbc_settings_link_buttons_header' ), // Callback
 				'cpt-bootstrap-carousel' // Page
 		);
-		add_settings_section(
-				'cptbc_settings_markup', // ID
-				__('Пользовательская разметка', 'cpt-bootstrap-carousel'), // Title
-				array( $this, 'cptbc_settings_markup_header' ), // Callback
-				'cpt-bootstrap-carousel' // Page
-		);
+//		add_settings_section(
+//				'cptbc_settings_markup', // ID
+//				__('Пользовательская разметка', 'cpt-bootstrap-carousel'), // Title
+//				array( $this, 'cptbc_settings_markup_header' ), // Callback
+//				'cpt-bootstrap-carousel' // Page
+//		);
         
 		// Behaviour Fields
 		add_settings_field(
@@ -157,20 +157,20 @@ class cptbc_settings_page {
 		);
 		add_settings_field(
 				'category', // ID
-				__('Ограничить категорию', 'cpt-bootstrap-carousel'), // Title
+				__('Выбор категории', 'cpt-bootstrap-carousel'), // Title
 				array( $this, 'category_callback' ), // Callback
 				'cpt-bootstrap-carousel', // Page
 				'cptbc_settings_behaviour' // Section		   
 		);
         
-        // Carousel Setup Section
-		add_settings_field(
-				'twbs', // ID
-				__('Версия Twitter Bootstrap', 'cpt-bootstrap-carousel'), // Title
-				array( $this, 'twbs_callback' ), // Callback
-				'cpt-bootstrap-carousel', // Page
-				'cptbc_settings_setup' // Section		   
-		);
+//         Carousel Setup Section
+//		add_settings_field(
+//				'twbs', // ID
+//				__('Версия Twitter Bootstrap', 'cpt-bootstrap-carousel'), // Title
+//				array( $this, 'twbs_callback' ), // Callback
+//				'cpt-bootstrap-carousel', // Page
+//				'cptbc_settings_setup' // Section
+//		);
 		add_settings_field(
 				'image_size', // ID
 				__('Размер изображений', 'cpt-bootstrap-carousel'), // Title
@@ -200,13 +200,13 @@ class cptbc_settings_page {
 				'cpt-bootstrap-carousel', // Page
 				'cptbc_settings_setup' // Section
 		);
-		add_settings_field(
-				'use_javascript_animation', // ID
-				__('Использовать Javascript для анимирования карусели?', 'cpt-bootstrap-carousel'), // Title
-				array( $this, 'use_javascript_animation_callback' ), // Callback
-				'cpt-bootstrap-carousel', // Page
-				'cptbc_settings_setup' // Section		   
-		);
+//		add_settings_field(
+//				'use_javascript_animation', // ID
+//				__('Использовать Javascript для анимирования карусели?', 'cpt-bootstrap-carousel'), // Title
+//				array( $this, 'use_javascript_animation_callback' ), // Callback
+//				'cpt-bootstrap-carousel', // Page
+//				'cptbc_settings_setup' // Section
+//		);
 
 		// Link buttons
 		add_settings_field(
@@ -223,71 +223,71 @@ class cptbc_settings_page {
 				'cpt-bootstrap-carousel', // Page
 				'cptbc_settings_link_buttons' // Section
 		);
-		add_settings_field(
-				'link_button_class', // ID
-				__('Class для кнопок с ссылками', 'cpt-bootstrap-carousel'), // Title
-				array( $this, 'link_button_class_callback' ), // Callback
-				'cpt-bootstrap-carousel', // Page
-				'cptbc_settings_link_buttons' // Section
-		);
-		add_settings_field(
-				'link_button_before', // ID
-				__('HTML тег ДО кнопок с ссылками', 'cpt-bootstrap-carousel'), // Title
-				array( $this, 'link_button_before_callback' ), // Callback
-				'cpt-bootstrap-carousel', // Page
-				'cptbc_settings_link_buttons' // Section
-		);
-		add_settings_field(
-				'link_button_after', // ID
-				__('HTML тег ПОСЛЕ кнопок с ссылками', 'cpt-bootstrap-carousel'), // Title
-				array( $this, 'link_button_after_callback' ), // Callback
-				'cpt-bootstrap-carousel', // Page
-				'cptbc_settings_link_buttons' // Section
-		);
+//		add_settings_field(
+//				'link_button_class', // ID
+//				__('Class для кнопок с ссылками', 'cpt-bootstrap-carousel'), // Title
+//				array( $this, 'link_button_class_callback' ), // Callback
+//				'cpt-bootstrap-carousel', // Page
+//				'cptbc_settings_link_buttons' // Section
+//		);
+//		add_settings_field(
+//				'link_button_before', // ID
+//				__('HTML тег ДО кнопок с ссылками', 'cpt-bootstrap-carousel'), // Title
+//				array( $this, 'link_button_before_callback' ), // Callback
+//				'cpt-bootstrap-carousel', // Page
+//				'cptbc_settings_link_buttons' // Section
+//		);
+//		add_settings_field(
+//				'link_button_after', // ID
+//				__('HTML тег ПОСЛЕ кнопок с ссылками', 'cpt-bootstrap-carousel'), // Title
+//				array( $this, 'link_button_after_callback' ), // Callback
+//				'cpt-bootstrap-carousel', // Page
+//				'cptbc_settings_link_buttons' // Section
+//		);
         
-        // Markup Section
-		add_settings_field(
-				'customprev', // ID
-				__('Свой class для кнопки НАЗАД', 'cpt-bootstrap-carousel'), // Title
-				array( $this, 'customprev_callback' ), // Callback
-				'cpt-bootstrap-carousel', // Page
-				'cptbc_settings_markup' // Section
-		);
-		add_settings_field(
-				'customnext', // ID
-				__('Свой class для кнопки ВПЕРЕД', 'cpt-bootstrap-carousel'), // Title
-				array( $this, 'customnext_callback' ), // Callback
-				'cpt-bootstrap-carousel', // Page
-				'cptbc_settings_markup' // Section
-		);
-		add_settings_field(
-				'before_title', // ID
-				__('HTML тег до заголовка', 'cpt-bootstrap-carousel'), // Title
-				array( $this, 'before_title_callback' ), // Callback
-				'cpt-bootstrap-carousel', // Page
-				'cptbc_settings_markup' // Section
-		);
-		add_settings_field(
-				'after_title', // ID
-				__('HTML тег после заголовка', 'cpt-bootstrap-carousel'), // Title
-				array( $this, 'after_title_callback' ), // Callback
-				'cpt-bootstrap-carousel', // Page
-				'cptbc_settings_markup' // Section
-		);
-		add_settings_field(
-				'before_caption', // ID
-				__('HTML тег до подзаголовка', 'cpt-bootstrap-carousel'), // Title
-				array( $this, 'before_caption_callback' ), // Callback
-				'cpt-bootstrap-carousel', // Page
-				'cptbc_settings_markup' // Section
-		);
-		add_settings_field(
-				'after_caption', // ID
-				__('HTML тег после подзаголовка', 'cpt-bootstrap-carousel'), // Title
-				array( $this, 'after_caption_callback' ), // Callback
-				'cpt-bootstrap-carousel', // Page
-				'cptbc_settings_markup' // Section
-		);
+//         Markup Section
+//		add_settings_field(
+//				'customprev', // ID
+//				__('Свой class для кнопки НАЗАД', 'cpt-bootstrap-carousel'), // Title
+//				array( $this, 'customprev_callback' ), // Callback
+//				'cpt-bootstrap-carousel', // Page
+//				'cptbc_settings_markup' // Section
+//		);
+//		add_settings_field(
+//				'customnext', // ID
+//				__('Свой class для кнопки ВПЕРЕД', 'cpt-bootstrap-carousel'), // Title
+//				array( $this, 'customnext_callback' ), // Callback
+//				'cpt-bootstrap-carousel', // Page
+//				'cptbc_settings_markup' // Section
+//		);
+//		add_settings_field(
+//				'before_title', // ID
+//				__('HTML тег до заголовка', 'cpt-bootstrap-carousel'), // Title
+//				array( $this, 'before_title_callback' ), // Callback
+//				'cpt-bootstrap-carousel', // Page
+//				'cptbc_settings_markup' // Section
+//		);
+//		add_settings_field(
+//				'after_title', // ID
+//				__('HTML тег после заголовка', 'cpt-bootstrap-carousel'), // Title
+//				array( $this, 'after_title_callback' ), // Callback
+//				'cpt-bootstrap-carousel', // Page
+//				'cptbc_settings_markup' // Section
+//		);
+//		add_settings_field(
+//				'before_caption', // ID
+//				__('HTML тег до подзаголовка', 'cpt-bootstrap-carousel'), // Title
+//				array( $this, 'before_caption_callback' ), // Callback
+//				'cpt-bootstrap-carousel', // Page
+//				'cptbc_settings_markup' // Section
+//		);
+//		add_settings_field(
+//				'after_caption', // ID
+//				__('HTML тег после подзаголовка', 'cpt-bootstrap-carousel'), // Title
+//				array( $this, 'after_caption_callback' ), // Callback
+//				'cpt-bootstrap-carousel', // Page
+//				'cptbc_settings_markup' // Section
+//		);
 			 
 	}
 			
@@ -316,9 +316,9 @@ class cptbc_settings_page {
 	public function cptbc_settings_link_buttons_header() {
             echo '<p>'.__('Параметры для использования кнопки с ссылкой, вместо ссылки на изображении.', 'cpt-bootstrap-carousel').'</p>';
 	}
-	public function cptbc_settings_markup_header() {
-            echo '<p>'.__('Настройте, какие классы CSS и теги HTML использует карусель.', 'cpt-bootstrap-carousel').'</p>';
-	}
+//	public function cptbc_settings_markup_header() {
+//            echo '<p>'.__('Настройте, какие классы CSS и теги HTML использует карусель.', 'cpt-bootstrap-carousel').'</p>';
+//	}
 			
 	// Callback functions - print the form inputs
     // Carousel behaviour	
@@ -403,7 +403,7 @@ class cptbc_settings_page {
 		}
 		print '</select>';
 	}
-	
+
     // Setup Section
 	public function twbs_callback() {
 		if(isset( $this->options['twbs'] ) && $this->options['twbs'] == '3'){
@@ -413,7 +413,7 @@ class cptbc_settings_page {
 			$cptbc_twbs3 = '';
 			$cptbc_twbs2 = ' selected="selected"';
 		}
-		print '<select id="twbs" name="cptbc_settings[twbs]">  
+		print '<select style="display: none;" id="twbs" name="cptbc_settings[twbs]">  
 			<option value="3"'.$cptbc_twbs3.'>v4.0.0-alpha.6 (по умолчанию)</option>
 		</select>';
         echo '<p class="description">'.__("Укажите версию используемого Bootstrap фреймворка.", 'cpt-bootstrap-carousel').'</p>';
@@ -442,12 +442,12 @@ class cptbc_settings_page {
 		if(isset( $this->options['use_background_images'] ) && $this->options['use_background_images'] == 0){
 			print ' selected="selected"';
 		}
-		echo '>Нет (по умолчанию)</option>';
+		echo '>Нет</option>';
 		print '<option value="1"';
 		if(isset( $this->options['use_background_images'] ) && $this->options['use_background_images'] == 1){
 			print ' selected="selected"';
 		}
-		echo '>Да</option>';
+		echo '>Да (по умолчанию)</option>';
 		print '</select>';
         echo '<p class="description">'.__("Позволяет заполнять изображению все пространство равномерно. По умолчанию картинки отображаются в теге 'img'", 'cpt-bootstrap-carousel').'</p>';
 	}
@@ -458,7 +458,7 @@ class cptbc_settings_page {
 	}
 
 	public function use_javascript_animation_callback() {
-		print '<select id="use_javascript_animation" name="cptbc_settings[use_javascript_animation]">';
+		print '<select style="display: none;" id="use_javascript_animation" name="cptbc_settings[use_javascript_animation]">';
 		print '<option value="1"';
 		if(isset( $this->options['use_javascript_animation'] ) && $this->options['use_javascript_animation'] == 1){
 			print ' selected="selected"';
@@ -507,49 +507,49 @@ class cptbc_settings_page {
 		}
 		echo '>Нет (по умолчанию)</option>';
 		print '</select>';
-		echo '<p class="description">'.__("Если для слайда задана сслыка, этот параметр создаст кнопку в заголовке, без привязки к изображению", 'cpt-bootstrap-carousel').'</p>';
+		echo '<p class="description">'.__("Выводить отдельную кнопку с ссылкой", 'cpt-bootstrap-carousel').'</p>';
 	}
 	public function link_button_text_callback() {
 			printf('<input type="text" id="link_button_text" name="cptbc_settings[link_button_text]" value="%s" size="20" />',
 					isset( $this->options['link_button_text'] ) ? esc_attr( $this->options['link_button_text']) : 'Read more');
 	}
 	public function link_button_class_callback() {
-			printf('<input type="text" id="link_button_class" name="cptbc_settings[link_button_class]" value="%s" size="20" />',
+			printf('<input style="display: none;" type="text" id="link_button_class" name="cptbc_settings[link_button_class]" value="%s" size="20" />',
 					isset( $this->options['link_button_class'] ) ? esc_attr( $this->options['link_button_class']) : 'btn btn-default pull-right');
-			echo '<p class="description">'.__("Кнопки из Bootstrap обязательно должны иметь class <code>btn</code> и еще один этих: <code>btn-default</code>, <code>btn-primary</code>, <code>btn-success</code>, <code>btn-warning</code>, <code>btn-danger</code> или <code>btn-info</code><br><code>pull-right</code> - закрепить кнопку справа.", 'cpt-bootstrap-carousel');
+			echo '<p style="display: none;" class="description">'.__("Кнопки из Bootstrap обязательно должны иметь class <code>btn</code> и еще один этих: <code>btn-default</code>, <code>btn-primary</code>, <code>btn-success</code>, <code>btn-warning</code>, <code>btn-danger</code> или <code>btn-info</code><br><code>pull-right</code> - закрепить кнопку справа.", 'cpt-bootstrap-carousel');
 	}
 	public function link_button_before_callback() {
-			printf('<input type="text" id="link_button_before" name="cptbc_settings[link_button_before]" value="%s" size="20" />',
+			printf('<input style="display: none;" type="text" id="link_button_before" name="cptbc_settings[link_button_before]" value="%s" size="20" />',
 					isset( $this->options['link_button_before'] ) ? esc_attr( $this->options['link_button_before']) : '');
 	}
 	public function link_button_after_callback() {
-			printf('<input type="text" id="link_button_after" name="cptbc_settings[link_button_after]" value="%s" size="20" />',
+			printf('<input style="display: none;" type="text" id="link_button_after" name="cptbc_settings[link_button_after]" value="%s" size="20" />',
 					isset( $this->options['link_button_after'] ) ? esc_attr( $this->options['link_button_after']) : '');
 	}
     
     // Markup section
 	public function before_title_callback() {
-			printf('<input type="text" id="before_title" name="cptbc_settings[before_title]" value="%s" size="15" />',
+			printf('<input style="display: none;" type="text" id="before_title" name="cptbc_settings[before_title]" value="%s" size="15" />',
 					isset( $this->options['before_title'] ) ? esc_attr( $this->options['before_title']) : '<h4>');
 	}
 	public function customnext_callback() {
-			printf('<input type="text" id="customnext" name="cptbc_settings[customnext]" value="%s" size="15" />',
+			printf('<input style="display: none;" type="text" id="customnext" name="cptbc_settings[customnext]" value="%s" size="15" />',
 					isset( $this->options['customnext'] ) ? esc_attr( $this->options['customnext']) : '');
 	}
 	public function customprev_callback() {
-			printf('<input type="text" id="customprev" name="cptbc_settings[customprev]" value="%s" size="15" />',
+			printf('<input style="display: none;" type="text" id="customprev" name="cptbc_settings[customprev]" value="%s" size="15" />',
 					isset( $this->options['customprev'] ) ? esc_attr( $this->options['customprev']) : '');
 	}
 	public function after_title_callback() {
-			printf('<input type="text" id="after_title" name="cptbc_settings[after_title]" value="%s" size="15" />',
+			printf('<input style="display: none;" type="text" id="after_title" name="cptbc_settings[after_title]" value="%s" size="15" />',
 					isset( $this->options['after_title'] ) ? esc_attr( $this->options['after_title']) : '</h4>');
 	}
 	public function before_caption_callback() {
-			printf('<input type="text" id="before_caption" name="cptbc_settings[before_caption]" value="%s" size="15" />',
+			printf('<input style="display: none;" type="text" id="before_caption" name="cptbc_settings[before_caption]" value="%s" size="15" />',
 					isset( $this->options['before_caption'] ) ? esc_attr( $this->options['before_caption']) : '<p>');
 	}
 	public function after_caption_callback() {
-			printf('<input type="text" id="after_caption" name="cptbc_settings[after_caption]" value="%s" size="15" />',
+			printf('<input style="display: none;" type="text" id="after_caption" name="cptbc_settings[after_caption]" value="%s" size="15" />',
 					isset( $this->options['after_caption'] ) ? esc_attr( $this->options['after_caption']) : '</p>');
 	}	
 	
@@ -560,10 +560,10 @@ if( is_admin() ){
 }
 
 // Add settings link on plugin page
-function cptbc_settings_link ($links) { 
-	$settings_link = '<a href="edit.php?post_type=cptbc&page=cpt-bootstrap-carousel">'.__('Settings', 'cpt-bootstrap-carousel').'</a>'; 
-	array_unshift($links, $settings_link); 
-	return $links; 
-}
-$cptbc_plugin = plugin_basename(__FILE__); 
-add_filter("plugin_action_links_$cptbc_plugin", 'cptbc_settings_link' );
+//function cptbc_settings_link ($links) {
+//	$settings_link = '<a href="edit.php?post_type=cptbc&page=cpt-bootstrap-carousel">'.__('Settings', 'cpt-bootstrap-carousel').'</a>';
+//	array_unshift($links, $settings_link);
+//	return $links;
+//}
+//add_filter("plugin_action_links_$cptbc_plugin", 'cptbc_settings_link' );
+$cptbc_plugin = plugin_basename(__FILE__);

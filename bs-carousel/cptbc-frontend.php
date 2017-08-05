@@ -42,12 +42,14 @@ function cptbc_frontend($atts){
     if($atts['category'] != ''){
         $args['carousel_category'] = $atts['category'];
     }
+    if(!isset($atts['twbs'])) $atts['twbs'] = '3';
+    if(!isset($atts['link_button_class'])) $atts['link_button_class'] = 'btn btn-outline-warning';
     if(!isset($atts['before_title'])) $atts['before_title'] = '<h4>';
     if(!isset($atts['after_title'])) $atts['after_title'] = '</h4>';
     if(!isset($atts['before_caption'])) $atts['before_caption'] = '<p>';
     if(!isset($atts['after_caption'])) $atts['after_caption'] = '</p>';
     if(!isset($atts['image_size'])) $atts['image_size'] = 'full';
-    if(!isset($atts['use_background_images'])) $atts['use_background_images'] = '0';
+    if(!isset($atts['use_background_images'])) $atts['use_background_images'] = '1';
     if(!isset($atts['use_javascript_animation'])) $atts['use_javascript_animation'] = '1';
     if(!isset($atts['select_background_images_style_size'])) $atts['select_background_images_style_size'] = 'cover';
     if($atts['id'] != ''){
@@ -85,7 +87,7 @@ function cptbc_frontend($atts){
 
             <?php // First content - the carousel indicators
             if( count( $images ) > 1 ){ ?>
-                <ol class="carousel-indicators">
+                <ol class="carousel-indicators hidden-xs-down">
                     <?php foreach ($images as $key => $image) { ?>
                         <li data-target="#cptbc_<?php echo $id; ?>" data-slide-to="<?php echo $key; ?>" <?php echo $key == 0 ? 'class="active"' : ''; ?>></li>
                     <?php } ?>
@@ -113,7 +115,7 @@ function cptbc_frontend($atts){
                       $linkend = '</a>';
                   } ?>
 
-                    <div class="carousel-item <?php echo $key == 0 ? 'active' : ''; ?>" id="cptbc-item-<?php echo $image['post_id']; ?>" <?php if($atts['use_background_images'] == 1){ echo ' style="height: '.$atts['background_images_height'].'px; background: url(\''.$image['img_src'].'\') no-repeat center center ; -webkit-background-size: ' . $atts['select_background_images_style_size'] . '; -moz-background-size: ' . $atts['select_background_images_style_size'] . '; -o-background-size: ' . $atts['select_background_images_style_size'] . '; background-size: ' . $atts['select_background_images_style_size'] . ';"'; } ?>>
+                    <div class="carousel-item <?php echo $key == 0 ? 'active' : ''; ?>" id="cptbc-item-<?php echo $image['post_id']; ?>" <?php if($atts['use_background_images'] == 1){ echo ' style="/*height: '.$atts['background_images_height'].'px*/; background: url(\''.$image['img_src'].'\') no-repeat center center ; -webkit-background-size: ' . $atts['select_background_images_style_size'] . '; -moz-background-size: ' . $atts['select_background_images_style_size'] . '; -o-background-size: ' . $atts['select_background_images_style_size'] . '; background-size: ' . $atts['select_background_images_style_size'] . ';"'; } ?>>
                         <?php
                         // Regular behaviour - display image with link around it
                         if($atts['use_background_images'] == 0){
@@ -161,7 +163,7 @@ function cptbc_frontend($atts){
 
             <?php // Previous / Next controls
             if( count( $images ) > 1 ){
-                if($atts['showcontrols'] === 'true' && $atts['twbs'] == '3') { ?>
+                if($atts['showcontrols'] == 'true' && $atts['twbs'] == '3') { ?>
                     <a class="carousel-control-prev" href="#cptbc_<?php echo $id; ?>" data-slide="prev"><span class="carousel-control-prev-icon"></span><span class="carousel-control-bg"></span><span class="sr-only">Назад</span></a>
                     <a class="carousel-control-next" href="#cptbc_<?php echo $id; ?>" data-slide="next"><span class="carousel-control-next-icon"></span><span class="carousel-control-bg"></span><span class="sr-only">Далее</span></a>
                 <?php } else if($atts['showcontrols'] === 'true'){ ?>
