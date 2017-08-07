@@ -83,7 +83,7 @@ function cptbc_frontend($atts){
     if(count($images) > 0){
         ob_start();
         ?>
-        <div id="cptbc_<?php echo $id; ?>" class="carousel slide" <?php if($atts['use_javascript_animation'] == '0'){ echo ' data-ride="carousel"'; } ?> data-interval="<?php echo $atts['interval']; ?>">
+        <div id="cptbc_<?php echo $id; ?>" class="carousel slide d-flex" <?php if($atts['use_javascript_animation'] == '0'){ echo ' data-ride="carousel"'; } ?> data-interval="<?php echo $atts['interval']; ?>">
 
             <?php // First content - the carousel indicators
             if( count( $images ) > 1 ){ ?>
@@ -93,6 +93,17 @@ function cptbc_frontend($atts){
                     <?php } ?>
                 </ol>
             <?php } ?>
+            
+            <?php // Previous controls
+            if( count( $images ) > 1 ){
+                if($atts['showcontrols'] == 'true' && $atts['twbs'] == '3') { ?>
+                    <a class="carousel-control-prev" href="#cptbc_<?php echo $id; ?>" data-slide="prev"><span class="carousel-control-prev-icon"></span><span class="carousel-control-bg"></span><span class="sr-only">Назад</span></a>
+                <?php } else if($atts['showcontrols'] === 'true'){ ?>
+                    <a class="carousel-control-prev" href="#cptbc_<?php echo $id; ?>" data-slide="prev">‹</a>
+                <?php } else if($atts['showcontrols'] === 'custom' && $atts['twbs'] == '3' &&  $atts['customprev'] != '' &&  $atts['customnext'] != ''){ ?>
+                    <a class="carousel-control-prev" href="#cptbc_<?php echo $id; ?>" data-slide="prev"><span class="<?php echo $atts['customprev'] ?> icon-prev"></span></a>
+                <?php }
+            } ?>
 
             <div class="carousel-inner">
                 <?php
@@ -161,16 +172,13 @@ function cptbc_frontend($atts){
                 <?php } ?>
             </div>
 
-            <?php // Previous / Next controls
+            <?php // Next controls
             if( count( $images ) > 1 ){
                 if($atts['showcontrols'] == 'true' && $atts['twbs'] == '3') { ?>
-                    <a class="carousel-control-prev" href="#cptbc_<?php echo $id; ?>" data-slide="prev"><span class="carousel-control-prev-icon"></span><span class="carousel-control-bg"></span><span class="sr-only">Назад</span></a>
                     <a class="carousel-control-next" href="#cptbc_<?php echo $id; ?>" data-slide="next"><span class="carousel-control-next-icon"></span><span class="carousel-control-bg"></span><span class="sr-only">Далее</span></a>
                 <?php } else if($atts['showcontrols'] === 'true'){ ?>
-                    <a class="carousel-control-prev" href="#cptbc_<?php echo $id; ?>" data-slide="prev">‹</a>
                     <a class="carousel-control-next" href="#cptbc_<?php echo $id; ?>" data-slide="next">›</a>
                 <?php } else if($atts['showcontrols'] === 'custom' && $atts['twbs'] == '3' &&  $atts['customprev'] != '' &&  $atts['customnext'] != ''){ ?>
-                    <a class="carousel-control-prev" href="#cptbc_<?php echo $id; ?>" data-slide="prev"><span class="<?php echo $atts['customprev'] ?> icon-prev"></span></a>
                     <a class="carousel-control-next" href="#cptbc_<?php echo $id; ?>" data-slide="next"><span class="<?php echo $atts['customnext'] ?> icon-next"></span></a>
                 <?php }
             } ?>
