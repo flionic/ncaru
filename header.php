@@ -15,11 +15,18 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title><?php wp_title( '-', true, 'right' ); ?><?php bloginfo( 'name' ); ?></title>
     <link rel="profile" href="http://gmpg.org/xfn/11"/>
+    <link rel="shortcut icon" href="<?php echo get_stylesheet_directory_uri(); ?>/img/favicon.ico" />
     <?php if ( is_singular() && pings_open( get_queried_object() ) ) : ?>
         <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
     <?php endif; ?>
     <?php if (is_singular() && get_option('thread_comments')) wp_enqueue_script('comment-reply'); ?>
     <?php wp_head(); ?>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js "></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js "></script>
+    <![endif]-->
 </head>
 <body <?php body_class(); ?>>
 <div class="container">
