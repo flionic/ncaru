@@ -158,9 +158,10 @@ function the_img_url()
 //add_filter('intermediate_image_sizes_advanced', 'wplift_remove_image_sizes');
 
 // Content without html tags
-function content_filter() { return wp_strip_all_tags(get_the_content()); }
-add_filter('the_content', 'content_filter');
-remove_filter('the_content', 'wpautop');
+//function content_filter() { return wp_strip_all_tags(get_the_content()); }
+//add_filter('the_content', 'content_filter');
+//remove_filter('the_content', 'wpautop');
+//add_filter('the_content', 'removeEmptyParagraphs',99999);
 
 // Post links bootstrap class fix
 function posts_link_attributes() { return 'class="btn-a"'; }

@@ -22,12 +22,12 @@
                             <a class="card-link" title="<?php the_title_attribute(); ?>" href="<?php the_permalink(); ?>"></a>
                             <h4 class="card-title"><?php the_title(); ?></h4>
                             <div class="card-text">
-                                <p><?php echo get_post_meta(get_the_ID(), 'Дата', true); ?></p>
-                                <p class="location"><?php echo get_post_meta(get_the_ID(), 'Место', true); ?></p>
+                                <?php if (get_post_meta(get_the_ID(), 'Дата', true)) : echo '<p>' . get_post_meta(get_the_ID(), 'Дата', true) . '</p>'; endif;?>
+                                <?php if (get_post_meta(get_the_ID(), 'Место', true)) : echo '<p class="location">' . get_post_meta(get_the_ID(), 'Место', true) . '</p>'; endif;?>
                             </div>
                         </div>
                     </div>
-                    <?php if (get_option('buyticket_btn') == '1') : echo '<a href="' . get_post_meta(get_the_ID(), 'Купить билеты', true) . '" class="btn btn-table btn-outline-primary" target="_blank">Купить билеты</a>'; endif;?>
+                    <?php if (get_option('buyticket_btn') == '1' and get_post_meta(get_the_ID(), 'Купить билеты', true)) : echo '<a href="' . get_post_meta(get_the_ID(), 'Купить билеты', true) . '" class="btn btn-table btn-outline-primary" target="_blank">Купить билеты</a>'; endif;?>
                 </div>
             <?php endwhile; endif; ?>
         </div>

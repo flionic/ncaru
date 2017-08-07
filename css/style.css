@@ -421,6 +421,10 @@ a {
     margin-top: 10px;
 }
 
+.post-text div:empty {
+    padding: 10px 0;
+}
+
 .blockquote {
     padding: 0 1rem;
 }
