@@ -9,7 +9,7 @@
 <?php get_header(); ?>
 <div class="container">
     <?php echo do_shortcode('[image-carousel]'); ?>
-    <?php //echo cptbc_shortcode(); ?>
+    <?php //echo cptbc_shortcode(''); ?>
 </div>
 <?php // get_template_part('carousel'); ?>
     <div class="container">
@@ -21,10 +21,13 @@
                         <div class="card-img-overlay">
                             <a class="card-link" title="<?php the_title_attribute(); ?>" href="<?php the_permalink(); ?>"></a>
                             <h4 class="card-title"><?php the_title(); ?></h4>
-                            <p class="card-text"><?php the_content(); ?></p>
+                            <div class="card-text">
+                                <p><?php echo get_post_meta(get_the_ID(), 'Дата', true); ?></p>
+                                <p class="location"><?php echo get_post_meta(get_the_ID(), 'Место', true); ?></p>
+                            </div>
                         </div>
                     </div>
-                    <?php if (get_option('buyticket_btn') == '1') : echo '<button type="button" class="btn btn-block btn-outline-primary">Купить билеты</button>'; endif;?>
+                    <?php if (get_option('buyticket_btn') == '1') : echo '<a href="' . get_post_meta(get_the_ID(), 'Купить билеты', true) . '" class="btn btn-table btn-outline-primary" target="_blank">Купить билеты</a>'; endif;?>
                 </div>
             <?php endwhile; endif; ?>
         </div>
