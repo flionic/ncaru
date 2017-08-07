@@ -643,7 +643,7 @@ a {
         padding: .5rem 1rem;
     }
 
-    .btn-next {
+    .cards .btn-next, .btn-next {
         min-width: 160px;
         font-size: 30px;
     }
@@ -683,8 +683,9 @@ a {
         font-size: 1rem;
     }
 
-    .btn-next {
+    .cards .btn-next, .btn-next {
         min-width: 210px;
+        font-size: 30px;
     }
 }
 

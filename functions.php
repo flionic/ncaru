@@ -168,5 +168,23 @@ function posts_link_attributes() { return 'class="btn-a"'; }
 add_filter('next_posts_link_attributes', 'posts_link_attributes');
 add_filter('previous_posts_link_attributes', 'posts_link_attributes');
 
+// jQuery posts loader
+function true_load_posts(){
+    $args = unserialize(stripslashes($_POST['query']));
+    $args['paged'] = $_POST['page'] + 1; // следующая страница
+    $args['post_status'] = 'publish';
+    $q = new WP_Query($args);
+    if( $q->have_posts() ):
+        while($q->have_posts()): $q->the_post(); ?>
+            <?php get_template_part('posts_cards'); ?>
+            <?php
+        endwhile;
+    endif;
+    wp_reset_postdata();
+    die();
+}
+add_action('wp_ajax_loadmore', 'true_load_posts');
+add_action('wp_ajax_nopriv_loadmore', 'true_load_posts');
+
 require_once('post-expirator/post-expirator.php');
 require_once('bs-carousel/cpt-bootstrap-carousel.php');
