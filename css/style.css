@@ -111,6 +111,10 @@ a {
     border-color: #F2C115;
 }
 
+.btn-table {
+    display: table;
+}
+
 /* nav-bar */
 .navbar {
     margin: 2px 0;
@@ -234,11 +238,11 @@ a {
 
 /* carousel */
 .carousel {
-    margin-bottom: 2rem;
+    margin: 12px 0 23px;
 }
 
 .carousel-item {
-    height: 35vw;
+    height: 92px;
     background-size: cover;
     background-repeat: no-repeat;
     /*background: no-repeat center center;*/
@@ -256,9 +260,10 @@ a {
 }
 
 .carousel-control-next, .carousel-control-prev {
-    width: 10%;
+    width: 7%;
     /*background-color: rgba(0, 0, 0, 0.2);*/
     opacity: 1;
+    position: relative;
     transition: all 0.25s ease;
 }
 
@@ -267,7 +272,7 @@ a {
 }
 
 .carousel-control-prev-icon {
-    margin-left: 2px;
+    margin-left: 6px;
 }
 
 .carousel-control-next-icon, .carousel-control-prev-icon {
@@ -337,10 +342,11 @@ a {
     padding: 0.7rem;
     background-color: rgba(18, 16, 25, 0.6);
     overflow: hidden;
+    font-size: 11px;
 }
 
 .card-title {
-    font-size: 17px;
+    /*font-size: 17px;*/
     max-height: 25%;
     font-weight: bold;
     white-space: nowrap;
@@ -349,13 +355,20 @@ a {
 }
 
 .card-text {
-    font-size: 14px;
+    /*font-size: 14px;*/
     max-height: 27%;
     width: 100%;
-    padding: 10px;
+    padding: 5px 15px;
     text-align: center;
     position: absolute;
     bottom: 0;
+    margin-bottom: 0;
+}
+
+.card-text p {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     margin-bottom: 0;
 }
 
@@ -386,6 +399,10 @@ a {
 .post-text {
     color: #424242;
     margin-top: 10px;
+}
+
+.blockquote {
+    padding: 0 1rem;
 }
 
 /* adaptive */
@@ -443,6 +460,10 @@ a {
 
     .card-text {
         max-height: 25%;
+    }
+
+    .card-text .location {
+        font-size: 13px;
     }
 
     .card-title, .card-text {
@@ -560,7 +581,7 @@ a {
     }
 
     .carousel-item {
-        height: 319px;
+        height: 317px;
     }
 
     .carousel-control-bg {
@@ -583,12 +604,12 @@ a {
     }
 
     .card-text {
-        padding: 10px;
+        /*padding: 10px;*/
         max-height: 25%;
     }
 
     .card-title, .card-text {
-        font-size: 22px;
+        font-size: 20px;
     }
 
     .cards .btn {
@@ -614,8 +635,12 @@ a {
         padding: .5rem 1rem;
     }
 
+    .carousel {
+        margin: 2rem 0 3.2rem 0;
+    }
+    
     .carousel-item {
-        height: 380px;
+        height: 317px;
     }
 
     .card {
