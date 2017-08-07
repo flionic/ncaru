@@ -10,5 +10,4 @@
 <div class="container">
     <h1 class="display-3" style="padding: 20px 0; text-align: center;">Упс! Страница не найдена</h1>
 </div>
-<?php get_template_part('carousel'); ?>
 <?php get_footer(); ?>
