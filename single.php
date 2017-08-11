@@ -11,7 +11,7 @@
         <div class="jumbotron">
             <?php if (have_posts()): while (have_posts()): the_post(); ?>
                 <div class="row">
-                    <div class="col-12 col-md-7">
+                    <div class="col-12 col-md-7 post">
                         <blockquote class="blockquote">
                             <small class="text-muted"><?php the_category(' '); ?></small><br>
                             <h1 class="post-title" style="color: #000"><?php the_title(); ?></h1>
@@ -19,11 +19,11 @@
                             <?php if (get_post_meta(get_the_ID(), 'Дата', true)) : echo '<small class="text-muted">Дата события: ' . get_post_meta(get_the_ID(), 'Дата', true) . '</small><br>'; endif;?>
                             <?php if (get_post_meta(get_the_ID(), 'post_place', true)) : echo '<small class="text-muted">Место: ' . get_post_meta(get_the_ID(), 'post_place', true) . '</small><br>'; endif;?>
                         </blockquote>
-                        <?php if (get_option('buyticket_btn') == '1' and get_post_meta(get_the_ID(), 'post_ticket', true)) : echo '<a href="' . get_post_meta(get_the_ID(), 'post_ticket', true) . '" class="btn btn-warning" target="_blank">Купить билеты</a>'; endif; ?>
-                        <?php if (get_option('buyticket_btn') == '1' and get_post_meta(get_the_ID(), 'post_vk', true)) : echo '<a href="' . get_post_meta(get_the_ID(), 'post_vk', true) . '" class="btn btn-primary" target="_blank">Официальная встреча</a>'; endif; ?>
+                        <?php if (get_option('buyticket_btn') == '1' and get_post_meta(get_the_ID(), 'post_ticket', true)) : echo '<a href="' . get_post_meta(get_the_ID(), 'post_ticket', true) . '" class="btn btn-warning" target="_blank"><img class="ico-single" src="'.get_template_directory_uri().'/ico/geo.png"></img>Купить билеты</a>'; endif; ?>
+                        <?php if (get_option('buyticket_btn') == '1' and get_post_meta(get_the_ID(), 'post_vk', true)) : echo '<a href="' . get_post_meta(get_the_ID(), 'post_vk', true) . '" class="btn btn-primary" target="_blank"><img class="ico-single" src="'.get_template_directory_uri().'/ico/vk.png"></img>Официальная встреча</a>'; endif; ?>
                     </div>
-                    <div class="col-12 col-md-5">
-                        <img class="img-fluid float-right rounded" style="max-height: 300px;" src="<?php the_img_url(); ?>" alt="<?php the_title(); ?>">
+                    <div class="col-12 col-md-5 post">
+                        <img class="img-fluid rounded" style="max-height: 300px;" src="<?php the_img_url(); ?>" alt="<?php the_title(); ?>">
                         <div class="p-3 clearfix"></div>
                     </div>
                     <div class="col-12">

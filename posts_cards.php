@@ -12,13 +12,15 @@
         <div class="card-img-overlay">
             <a class="card-link" title="<?php the_title_attribute(); ?>" href="<?php the_permalink(); ?>"></a>
             <h4 class="card-title"><?php the_title(); ?></h4>
-            <?php if (get_post_meta(get_the_ID(), 'Дата', true) or get_post_meta(get_the_ID(), 'post_place', true)) {
+            <?php if (get_post_meta(get_the_ID(), 'Дата', true)) {
                 echo '<div class="card-text">';
                     echo '<p>' . get_post_meta(get_the_ID(), 'Дата', true) . '</p>';
-                    echo '<p class="location">' . get_post_meta(get_the_ID(), 'post_place', true) . '</p>';
+                    if (get_post_meta(get_the_ID(), 'post_place', true)) {
+                        echo '<p class="location"><img class="ico-loc" src="'.get_template_directory_uri().'/ico/geo.png"></img>'.get_post_meta(get_the_ID(), 'post_place', true).'</p>';
+                    }
                 echo '</div>';
             }; ?>
         </div>
     </div>
-    <?php if (get_option('buyticket_btn') == '1' and get_post_meta(get_the_ID(), 'post_ticket', true)) : echo '<a href="' . get_post_meta(get_the_ID(), 'post_ticket', true) . '" class="btn btn-table btn-outline-primary" target="_blank">Купить билеты</a>'; endif; ?>
+    <?php if (get_option('buyticket_btn') == '1' and get_post_meta(get_the_ID(), 'post_ticket', true)) : echo '<a href="' . get_post_meta(get_the_ID(), 'post_ticket', true) . '" class="btn btn-table btn-outline-primary" target="_blank"><img class="ico-muz" src="'.get_template_directory_uri().'/ico/muz.png"></img>Купить билеты</a>'; endif; ?>
 </div>
