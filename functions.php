@@ -186,5 +186,92 @@ function true_load_posts(){
 add_action('wp_ajax_loadmore', 'true_load_posts');
 add_action('wp_ajax_nopriv_loadmore', 'true_load_posts');
 
+// Posts fields
+function add_event_place_metabox() {
+    add_meta_box('event_place_metabox', __( 'Подробная информация', 'event_data'),
+        'event_place_metabox_callback', 'post', 'side', 'core');
+}
+add_action( 'add_meta_boxes', 'add_event_place_metabox' );
+function event_place_metabox_callback( $post ) { ?>
+    <td>
+        Площадка
+        <br/>
+        <?php $event_place = get_post_meta( $post->ID, 'post_place', true ); ?>
+        <label for "event_place"><?php __('Место события', 'eventplace' ); ?></label>
+        <input type="text" class="EventPlace" name="event_place" value="<?php echo $event_place; ?>">
+    </td>
+    <br>
+    <br>
+    <label for "event_date">Дата концерта</label>
+    <input type="text" class="MyDate" name="event_date" value="<?php echo esc_attr(get_post_meta( $post->ID, 'post_date', true )); ?>">
+    <script type="text/javascript">
+        jQuery(document).ready(function() {
+            jQuery('.MyDate').datepicker({
+                dateFormat : 'dd-mm-yy'
+            });
+        });
+    </script>
+    <table><tbody>
+        <tr>
+            <th style="text-align: left;">Час.</th>
+            <th style="text-align: left;">Мин.</th>
+        </tr>
+        <tr>
+            <td>
+                <label>
+                    <select name="event_hours">
+                        <?php for($i = 1; $i <= 24; $i++) {
+                            if (get_post_meta( $post->ID, 'post_hours', true ) == date_i18n('H',mktime($i, 0, 0, date_i18n('n'), date_i18n('j'), date_i18n('Y'))))
+                                $selected = ' selected="selected"';
+                            else
+                                $selected = '';
+                            echo '<option value="'.date_i18n('H',mktime($i, 0, 0, date_i18n('n'), date_i18n('j'), date_i18n('Y'))).'"'.$selected.'>'.date_i18n('H',mktime($i, 0, 0, date_i18n('n'), date_i18n('j'), date_i18n('Y'))).'</option>';
+                        } ?>
+                    </select>
+                </label>
+            </td>
+            <td>
+                <label>
+                    <input type="text" name="event_mins" value="<?php echo esc_attr(get_post_meta( $post->ID, 'post_mins', true )); ?>" size="2">
+                </label>
+            </td>
+        </tr>
+    </tbody></table>
+    <br>
+    <label for "event_ticket">Купить билеты</label>
+    <input type="text" name="event_ticket" value="<?php echo esc_attr(get_post_meta( $post->ID, 'post_ticket', true )); ?>">
+    <br>
+    <label for "event_vk">Официальная встреча</label>
+    <input type="text" name="event_vk" value="<?php echo esc_attr(get_post_meta( $post->ID, 'post_vk', true )); ?>">
+<?php }
+function save_event_place_meta( $post_id ) {
+    if ( !current_user_can( 'edit_post', $post->ID ) ) return;
+    if ( isset( $_POST['event_place'] ) ) {
+        update_post_meta( $post_id, 'post_place', ( $_POST['event_place'] ) );
+    }
+    if ( isset( $_POST['event_date'] ) ) {
+        update_post_meta( $post_id, 'post_date', $_POST['event_date'] );
+    }
+    if ( isset( $_POST['event_hours'] ) ) {
+        update_post_meta( $post_id, 'post_hours', $_POST['event_hours'] );
+    }
+    if ( isset( $_POST['event_mins'] ) ) {
+        update_post_meta( $post_id, 'post_mins', $_POST['event_mins'] );
+    }
+    if ( isset( $_POST['event_ticket'] ) ) {
+        update_post_meta( $post_id, 'post_ticket', $_POST['event_ticket'] );
+    }
+    if ( isset( $_POST['event_vk'] ) ) {
+        update_post_meta( $post_id, 'post_vk', $_POST['event_vk'] );
+    }
+}
+add_action( 'save_post', 'save_event_place_meta' );
+
+function tutsplus_load_jquery_datepicker() {
+    wp_enqueue_script( 'jquery-ui-datepicker' );
+    wp_enqueue_style( 'jquery-style', 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/themes/smoothness/jquery-ui.css' );
+}
+add_action( 'admin_enqueue_scripts', 'tutsplus_load_jquery_datepicker' );
+
 require_once('post-expirator/post-expirator.php');
 require_once('bs-carousel/cpt-bootstrap-carousel.php');
