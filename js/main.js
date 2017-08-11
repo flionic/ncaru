@@ -4,7 +4,7 @@
 
 // carousel hover dropdown
 jQuery(function($) {
-    $('.dropdown').on('mouseenter mouseleave click tap', function () {
+    $('.dropdown').on('mouseenter mouseleave', function () {
         $(this).toggleClass("show");
     });
 });

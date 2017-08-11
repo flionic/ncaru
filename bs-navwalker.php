@@ -115,7 +115,7 @@ if ( ! class_exists( 'WP_Bootstrap_Navwalker' ) ) {
 			if ( $args->has_children && 0 === $depth ) {
 				$atts['href']   		= '#';
 				$atts['href']   		= ! empty( $item->url ) ? $item->url : '';
-				$atts['data-toggle']	= 'dropdown';
+				$atts['data-toggle']	= 'dropdown1';
 //				$atts['data-toggle']	= '';
 				$atts['aria-haspopup']	= 'true';
 				$atts['aria-expanded']	= 'false';
