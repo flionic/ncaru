@@ -50,7 +50,7 @@ add_filter ('manage_posts_columns', 'expirationdate_add_column', 10, 2);
 function expirationdate_add_column ($columns,$type) {
 	$defaults = get_option('expirationdateDefaults'.ucfirst($type));
 	if (!isset($defaults['activeMetaBox']) || $defaults['activeMetaBox'] == 'active') {
-	  	$columns['expirationdate'] = __('Expires','post-expirator');
+	  	$columns['expirationdate'] = __('Дата истечения','post-expirator');
 	}
   	return $columns;
 }
@@ -113,7 +113,7 @@ function expirationdate_show_value ($column_name) {
 	$id = $post->ID;
 	if ($column_name === 'expirationdate') {
 		$ed = get_post_meta($id,'_expiration-date',true);
-    		echo ($ed ? get_date_from_gmt(gmdate('Y-m-d H:i:s',$ed),get_option('date_format').' '.get_option('time_format')) : __("Never",'post-expirator'));
+    		echo ($ed ? get_date_from_gmt(gmdate('Y-m-d H:i:s',$ed),get_option('date_format').' '.get_option('time_format')) : __("Никогда",'post-expirator'));
 
 		//Values for Quick Edit
 		if ($ed) {
@@ -241,7 +241,7 @@ function expirationdate_meta_custom() {
 	foreach ($custom_post_types as $t) {
 		$defaults = get_option('expirationdateDefaults'.ucfirst($t));
 		if (!isset($defaults['activeMetaBox']) || $defaults['activeMetaBox'] == 'active') {
-			add_meta_box('expirationdatediv', __('Срок действия','post-expirator'), 'expirationdate_meta_box', $t, 'side', 'core');
+			add_meta_box('expirationdatediv', __('Дата концерта (истечения)','post-expirator'), 'expirationdate_meta_box', $t, 'side', 'core');
 		}
 	}
 }
@@ -383,7 +383,7 @@ function expirationdate_meta_box($post) {
 			$catdisplay = 'none';
 		}
 		echo '<div id="expired-category-selection" style="display: '.$catdisplay.'">';
-		echo '<br/>'.__('Expiration Categories','post-expirator').':<br/>';
+		echo '<br/>'.__('Категория','post-expirator').':<br/>';
 
 		echo '<div class="wp-tab-panel" id="post-expirator-cat-list">';
 		echo '<ul id="categorychecklist" class="list:category categorychecklist form-no-clear">';
@@ -404,7 +404,7 @@ function expirationdate_meta_box($post) {
 		echo '</ul>';
 		echo '</div>';
 		if (isset($taxonomy))
-		echo '<p class="post-expirator-taxonomy-name">'.__('Taxonomy Name','post-expirator').': '.$taxonomy.'</p>';
+//		echo '<p class="post-expirator-taxonomy-name">'.__('Taxonomy Name','post-expirator').': '.$taxonomy.'</p>';
 		echo '</div>';
 	}
 	echo '<div id="expirationdate_ajax_result"></div>';
