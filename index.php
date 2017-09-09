@@ -12,6 +12,11 @@
 </div>
     <div class="container">
         <div class="row cards">
+            <?php query_posts(array(
+                'order' => 'ASC',
+                'meta_key' => '_expiration-date',
+                'orderby' => 'meta_value'
+            )); ?>
             <?php if (have_posts()): while (have_posts()): the_post(); ?>
                 <?php get_template_part('posts_cards'); ?>
             <?php endwhile; endif; ?>
