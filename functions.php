@@ -200,43 +200,43 @@ function event_place_metabox_callback( $post ) { ?>
         <label for "event_place"><?php __('Место события', 'eventplace' ); ?></label>
         <input type="text" class="EventPlace" name="event_place" value="<?php echo $event_place; ?>">
     </td>
-    <br>
-    <br>
-    <label for "event_date">Дата концерта</label>
-    <input type="text" class="MyDate" name="event_date" value="<?php echo esc_attr(get_post_meta( $post->ID, 'post_date', true )); ?>">
-    <script type="text/javascript">
-        jQuery(document).ready(function() {
-            jQuery('.MyDate').datepicker({
-                dateFormat : 'dd-mm-yy'
-            });
-        });
-    </script>
-    <table><tbody>
-        <tr>
-            <th style="text-align: left;">Час.</th>
-            <th style="text-align: left;">Мин.</th>
-        </tr>
-        <tr>
-            <td>
-                <label>
-                    <select name="event_hours">
-                        <?php for($i = 1; $i <= 24; $i++) {
-                            if (get_post_meta( $post->ID, 'post_hours', true ) == date_i18n('H',mktime($i, 0, 0, date_i18n('n'), date_i18n('j'), date_i18n('Y'))))
-                                $selected = ' selected="selected"';
-                            else
-                                $selected = '';
-                            echo '<option value="'.date_i18n('H',mktime($i, 0, 0, date_i18n('n'), date_i18n('j'), date_i18n('Y'))).'"'.$selected.'>'.date_i18n('H',mktime($i, 0, 0, date_i18n('n'), date_i18n('j'), date_i18n('Y'))).'</option>';
-                        } ?>
-                    </select>
-                </label>
-            </td>
-            <td>
-                <label>
-                    <input type="text" name="event_mins" value="<?php echo esc_attr(get_post_meta( $post->ID, 'post_mins', true )); ?>" size="2">
-                </label>
-            </td>
-        </tr>
-    </tbody></table>
+<!--    <br>-->
+<!--    <br>-->
+<!--    <label for "event_date">Дата концерта</label>-->
+<!--    <input type="text" class="MyDate" name="event_date" value="--><?php //echo esc_attr(get_post_meta( $post->ID, 'post_date', true )); ?><!--">-->
+<!--    <script type="text/javascript">-->
+<!--        jQuery(document).ready(function() {-->
+<!--            jQuery('.MyDate').datepicker({-->
+<!--                dateFormat : 'dd-mm-yy'-->
+<!--            });-->
+<!--        });-->
+<!--    </script>-->
+<!--    <table><tbody>-->
+<!--        <tr>-->
+<!--            <th style="text-align: left;">Час.</th>-->
+<!--            <th style="text-align: left;">Мин.</th>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td>-->
+<!--                <label>-->
+<!--                    <select name="event_hours">-->
+<!--                        --><?php //for($i = 1; $i <= 24; $i++) {
+//                            if (get_post_meta( $post->ID, 'post_hours', true ) == date_i18n('H',mktime($i, 0, 0, date_i18n('n'), date_i18n('j'), date_i18n('Y'))))
+//                                $selected = ' selected="selected"';
+//                            else
+//                                $selected = '';
+//                            echo '<option value="'.date_i18n('H',mktime($i, 0, 0, date_i18n('n'), date_i18n('j'), date_i18n('Y'))).'"'.$selected.'>'.date_i18n('H',mktime($i, 0, 0, date_i18n('n'), date_i18n('j'), date_i18n('Y'))).'</option>';
+//                        } ?>
+<!--                    </select>-->
+<!--                </label>-->
+<!--            </td>-->
+<!--            <td>-->
+<!--                <label>-->
+<!--                    <input type="text" name="event_mins" value="--><?php //echo esc_attr(get_post_meta( $post->ID, 'post_mins', true )); ?><!--" size="2">-->
+<!--                </label>-->
+<!--            </td>-->
+<!--        </tr>-->
+<!--    </tbody></table>-->
     <br>
     <label for "event_ticket">Купить билеты</label>
     <input type="text" name="event_ticket" value="<?php echo esc_attr(get_post_meta( $post->ID, 'post_ticket', true )); ?>">
@@ -248,15 +248,6 @@ function save_event_place_meta( $post_id ) {
     if ( !current_user_can( 'edit_post', $post->ID ) ) return;
     if ( isset( $_POST['event_place'] ) ) {
         update_post_meta( $post_id, 'post_place', ( $_POST['event_place'] ) );
-    }
-    if ( isset( $_POST['event_date'] ) ) {
-        update_post_meta( $post_id, 'post_date', $_POST['event_date'] );
-    }
-    if ( isset( $_POST['event_hours'] ) ) {
-        update_post_meta( $post_id, 'post_hours', $_POST['event_hours'] );
-    }
-    if ( isset( $_POST['event_mins'] ) ) {
-        update_post_meta( $post_id, 'post_mins', $_POST['event_mins'] );
     }
     if ( isset( $_POST['event_ticket'] ) ) {
         update_post_meta( $post_id, 'post_ticket', $_POST['event_ticket'] );
@@ -272,6 +263,18 @@ function tutsplus_load_jquery_datepicker() {
     wp_enqueue_style( 'jquery-style', 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/themes/smoothness/jquery-ui.css' );
 }
 add_action( 'admin_enqueue_scripts', 'tutsplus_load_jquery_datepicker' );
+
+function wpdocs_my_search_form( $form ) {
+    $form = '<form role="search" method="get" id="searchform" class="col-md-5 searchform" action="' . home_url( '/' ) . '" >
+    <div style=" float: right;"><label class="screen-reader-text" for="s"></label>
+    <input type="text" value="' . get_search_query() . '" name="s" id="s" placeholder="Поиск..." required />
+    <input type="submit" id="searchsubmit" class="btn btn-outline-primary ico ico-s" value="" />
+    </div>
+    </form>';
+
+    return $form;
+}
+add_filter( 'get_search_form', 'wpdocs_my_search_form' );
 
 require_once('post-expirator/post-expirator.php');
 require_once('bs-carousel/cpt-bootstrap-carousel.php');
