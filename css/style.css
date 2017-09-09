@@ -58,7 +58,7 @@ a {
 }
 
 .logo {
-    max-width: 200px;
+    max-width: 160px;
     margin-top: 2rem;
 }
 
@@ -106,9 +106,27 @@ a {
 }
 
 .btn-warning {
+    color: #F2C115;
+    background-color: #ffffff;
+    border: 3px solid #F2C115;
+}
+
+.btn-warning:hover {
     color: #fff;
     background-color: #F2C115;
     border-color: #F2C115;
+}
+
+.btn-primary {
+    color: #121028;
+    background-color: #ffffff;
+    border: 3px solid #121028;
+}
+
+.btn-primary:hover {
+    color: #fff;
+    background-color: #121028;
+    border-color: #121028;
 }
 
 .btn-table {
@@ -129,7 +147,7 @@ a {
 }
 
 .navbar-nav > .nav-item {
-    text-align: center;
+    /*text-align: center;*/
     padding: 0 5px;
 }
 
@@ -147,7 +165,7 @@ a {
 
 .navbar-nav .nav-item:hover > .nav-link, .navbar-nav .nav-link:hover, .navbar-nav .nav-item:hover .nav-link.dropdown-nav::after {
     color: #F2C115;
-    border-top-color: #F2C115;
+    /* border-top-color: #F2C115; */
 }
 
 .navbar-toggler-text {
@@ -192,9 +210,10 @@ a {
 
 .dropdown-menu .nav-item .nav-link, .dropdown-item {
     /*color: #fefeff;*/
+    width: 100%;
     color: #fff;
     padding: 10px 25px;
-    min-width: 220px;
+    /* min-width: 220px; */
     max-width: 245px;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -216,12 +235,142 @@ a {
     margin: 0 3px 1px 0;
 }
 
+.ico {
+    width: 25px;
+    min-height: 25px;
+    padding-bottom: 2px;
+    margin: 0 10px 10px 0;
+    -webkit-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+    background-size: cover;
+    display: -webkit-inline-flex;
+}
+
 .ico-muz {
     width: 10px;
+    min-height: 10px;
+    padding-bottom: 2px;
     margin: 0 5px 0 0;
+    -webkit-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+    background-size: cover;
+    background-image: url("http://newnca.tk/wp-content/themes/ncatheme/ico/muz.png");
+}
+
+.btn-outline-primary:hover .ico-muz {
+    background-image: url("http://newnca.tk/wp-content/themes/ncatheme/ico/muz_2.png");
+}
+
+.ico-vk {
+    background-image: url("http://newnca.tk/wp-content/themes/ncatheme/ico/vk.png");
+}
+
+.ico-vk:hover {
+    background-image: url("http://newnca.tk/wp-content/themes/ncatheme/ico/vk_2.png");
+}
+
+.ico-ig {
+    background-image: url("http://newnca.tk/wp-content/themes/ncatheme/ico/inst.png");
+}
+
+.ico-ig:hover {
+    background-image: url("http://newnca.tk/wp-content/themes/ncatheme/ico/ins_2.png");
+}
+
+.ico-kn {
+    background-image: url("http://newnca.tk/wp-content/themes/ncatheme/ico/kosmonavt.png");
+}
+
+.ico-kn:hover {
+    background-image: url("http://newnca.tk/wp-content/themes/ncatheme/ico/kosmonavt_2.png");
+}
+
+.ico-mb {
+    background-image: url("http://newnca.tk/wp-content/themes/ncatheme/ico/muz.png");
+}
+
+.ico-mb:hover {
+    background-image: url("http://newnca.tk/wp-content/themes/ncatheme/ico/muz_2.png");
+}
+
+.ico-fb {
+    width: 23px;
+    min-height: 24px;
+    background-image: url("http://newnca.tk/wp-content/themes/ncatheme/ico/fb.png");
+}
+
+.ico-fb:hover {
+    background-image: url("http://newnca.tk/wp-content/themes/ncatheme/ico/fb_2.png");
+}
+
+.ico-sk {
+    background-image: url("http://newnca.tk/wp-content/themes/ncatheme/ico/simph_kino.png");
+}
+
+.ico-sk:hover {
+    background-image: url("http://newnca.tk/wp-content/themes/ncatheme/ico/simph_kino_2.png");
+}
+
+.ico-s {
+    background: url("http://newnca.tk/wp-content/themes/ncatheme/ico/search.svg") no-repeat center;
+    margin: 0 0 3px 0;
+    width: 21px;
+    height: 21px;
+    min-height: 21px;
+    background-size: contain;
+}
+
+.ico-s:hover {
+    background: url("http://newnca.tk/wp-content/themes/ncatheme/ico/search_hover.svg") no-repeat center;
+}
+
+.ico-single {
+    width: 10px;
+    margin: 0 3px 3px -3px;
+    -webkit-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+}
+
+.r-log {
+    margin-right: 0;
+    margin-left: 0;
+}
+
+.social, .searchform {
+    padding-top: 8%;
+    /*padding-left: 3%;*/
+    text-align: center;
 }
 
 @media (max-width: 578px) {
+    .social {
+        padding-top: 6%;
+        padding-left: 6%;
+    }
+
+    .dropdown-menu {
+        display: block;
+    }
+
+    .menu-item {
+        display: table;
+    }
+
+    .nav-link {
+        text-align: left;
+    }
+
+    .dropdown-item:not(:last-child), .dropdown-menu .nav-item:not(:last-child) .nav-link {
+        border-bottom: 0;
+    }
+
+    .dropdown-toggle::after {
+        border-top: 0;
+    }
+
     .post {
         text-align: center;
     }
@@ -263,8 +412,8 @@ a {
     }
 
     .navbar-nav .nav-item:hover .nav-link.dropdown-nav::after, .navbar-nav .nav-item:hover > .nav-link, .navbar-nav .nav-link:hover {
-        color: #000;
-        background-color: #C09115;
+        /* color: #000; */
+        /* background-color: #C09115; */
     }
 
     .dropdown-menu {
@@ -282,7 +431,7 @@ a {
 }
 
 .carousel-item {
-    height: 92px;
+    height: 122px;
     background-size: cover;
     background-repeat: no-repeat;
     /*background: no-repeat center center;*/
@@ -457,6 +606,10 @@ a {
 }
 
 @media (min-width: 576px) {
+    .nav-link {
+        text-align: center;
+    }
+
     .post .img-fluid {
         float: right;
     }
@@ -684,6 +837,7 @@ a {
 
     .ico-muz {
         width: 15px;
+        height: 15px;
         margin: 0 5px 0 0;
     }
 }
@@ -723,8 +877,8 @@ a {
     }
 
     .cards .btn-next, .btn-next {
-        min-width: 210px;
-        font-size: 30px;
+        min-width: 150px;
+        font-size: 25px;
     }
 }
 
@@ -753,3 +907,45 @@ a {
     transform: translateX(0);
 
 }
+
+.dropdown-menu {
+    left: 0;
+    width: 100%;
+}
+
+a:focus, a:hover {
+    color: inherit;
+    text-decoration: none;
+}
+
+.btn-outline-primary.focus, .btn-outline-primary:focus, .btn-primary.focus, .btn-primary:focus, .btn-warning.focus, .btn-warning:focus {
+    -webkit-box-shadow: 0 0 0 0 rgba(2,117,216,.5);
+    box-shadow: 0 0 0 0 rgba(2,117,216,.5);
+}
+
+.size-full {
+    max-width: 100%;
+    height: auto;
+}
+
+#s, #s:focus {
+    border-width: 3px 6px 3px 6px;
+    outline: 0;
+    line-height: 0.1;
+    font-size: 17px;
+    border-radius: 7px;
+    border-color: transparent;
+}
+
+.searchform .btn-outline-primary {
+    border: 0;
+}
+
+.a2a_full_footer {
+    display: none;
+}
+
+.btn:hover .ico-single {
+    filter: brightness(0) invert(1);
+}
+
