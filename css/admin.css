@@ -57,3 +57,7 @@ input[type=text]:focus, input[type=search]:focus, input[type=radio]:focus, input
     -webkit-box-shadow: 0 0 2px rgba(242,193,32,.8);
     box-shadow: 0 0 2px rgba(242,193,32,.8);
 }
+
+#menu-plugins {
+    display: none;
+}
